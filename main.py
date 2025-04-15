@@ -4,8 +4,11 @@ from models import ChatRequest
 from chat_manager import get_chat_history, save_chat_history, create_chat_id
 from config import API_TOKEN, BASE_URL, MODEL_NAME, MAX_TOKENS
 from pathlib import Path
+from middlewares import add_middlewares  # ✅ Import it
 
 app = FastAPI()
+add_middlewares(app)
+
 client = OpenAI(api_key=API_TOKEN, base_url=BASE_URL)
 
 PROMPT_PATH = Path("prompts/default_prompt.txt")
